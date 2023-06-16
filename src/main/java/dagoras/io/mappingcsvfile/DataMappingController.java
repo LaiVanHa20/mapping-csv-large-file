@@ -17,8 +17,8 @@ public class DataMappingController {
 
     @GetMapping
     public List<Contact> mapData() {
-        String contactsFilePath = "path/to/contacts.csv";
-        String employeesFilePath = "path/to/employees.csv";
+        String contactsFilePath = "D:\\DagorasCompany\\Varnish_Cache\\mapping-csv-file\\data.csv";
+        String employeesFilePath = "D:\\DagorasCompany\\Varnish_Cache\\mapping-csv-file\\large_data.csv";
         return dataMappingService.mapData(contactsFilePath, employeesFilePath);
     }
 }

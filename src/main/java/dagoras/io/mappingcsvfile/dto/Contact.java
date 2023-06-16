@@ -8,10 +8,6 @@ public class Contact {
     private String fullName;
     private String address;
     private String email;
-
-    public void setTaxCode(String taxCode) {
-    }
-
-    public void setSocialInsuranceCode(String socialInsuranceCode) {
-    }
+    private String taxCode;
+    private String socialInsuranceCode;
 }
