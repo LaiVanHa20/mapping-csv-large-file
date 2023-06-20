@@ -44,26 +44,6 @@ public class DataMappingService {
         }
     }
 
-    public List<Contact> mapData2(String contactsFilePath, String employeesFilePath) {
-        List<Contact> contacts = readContactsFile(contactsFilePath);
-        List<Employee> employees = readEmployeesFile(employeesFilePath);
-
-        Map<String, Employee> employeeMap = employees.stream()
-                .collect(Collectors.toMap(Employee::getPhoneNumber, Function.identity()));
-
-        return contacts.stream()
-                .peek(contact -> {
-                    String phoneNumber = contact.getPhoneNumber();
-                    Employee employee = employeeMap.get(phoneNumber);
-                    if (employee != null) {
-                        contact.setTaxCode(employee.getTaxCode());
-                        contact.setSocialInsuranceCode(employee.getSocialInsuranceCode());
-                    }
-                })
-                .collect(Collectors.toList());
-    }
-
-
     public List<Contact> mapData(String contactsFilePath, String employeesFilePath) {
         try (Reader contactsReader = Files.newBufferedReader(Paths.get(contactsFilePath));
              Reader employeesReader = Files.newBufferedReader(Paths.get(employeesFilePath))) {
@@ -113,6 +93,24 @@ public class DataMappingService {
         return Collections.emptyList();
     }
 
+    public List<Contact> mapData2(String contactsFilePath, String employeesFilePath) {
+        List<Contact> contacts = readContactsFile(contactsFilePath);
+        List<Employee> employees = readEmployeesFile(employeesFilePath);
+
+        Map<String, Employee> employeeMap = employees.stream()
+                .collect(Collectors.toMap(Employee::getPhoneNumber, Function.identity()));
+
+        return contacts.stream()
+                .peek(contact -> {
+                    String phoneNumber = contact.getPhoneNumber();
+                    Employee employee = employeeMap.get(phoneNumber);
+                    if (employee != null) {
+                        contact.setTaxCode(employee.getTaxCode());
+                        contact.setSocialInsuranceCode(employee.getSocialInsuranceCode());
+                    }
+                })
+                .collect(Collectors.toList());
+    }
 
     private List<Contact> readContactsFile(String filePath) {
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath))) {

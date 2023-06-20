@@ -23,5 +23,6 @@ public class DataMappingRunner implements CommandLineRunner {
 
         // Ghi danh sách contacts vào file CSV mới
         dataMappingService.writeDataAfterMappingToFile(contacts, outputFilePath);
+        System.out.println("Done!");
     }
 }

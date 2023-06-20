@@ -15,7 +15,7 @@ public class RandomDataToCSV {
             writer.writeNext(header);
 
             Random random = new Random();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10000000; i++) {
                 String phoneNumber = generateRandomPhoneNumber();
                 String fullName = generateRandomFullName();
                 String address = generateRandomAddress();
